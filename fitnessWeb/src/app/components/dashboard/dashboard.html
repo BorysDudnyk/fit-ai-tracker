@@ -1,0 +1,72 @@
+<div nz-row>
+    <div nz-col [nzXs]="{ span: 5, offset: 1 }" [nzLg]="{ span: 6, offset: 2 }">
+        <nz-card nzTitle="Всього калорій спалено" style="background-color: aliceblue;">
+            <p>{{statsData?.totalCaloriesBurned}} ккал</p>
+        </nz-card>
+    </div>
+    <div nz-col [nzXs]="{ span: 11, offset: 1 }" [nzLg]="{ span: 6, offset: 2 }">
+        <nz-card nzTitle="Загальна дистанція" style="background-color: aliceblue;">
+            <p>{{statsData?.distance | number: '1.1-1'}} км</p>
+        </nz-card>
+    </div>
+    <div nz-col [nzXs]="{ span: 5, offset: 1 }" [nzLg]="{ span: 6, offset: 2 }">
+        <nz-card nzTitle="Всього кроків" style="background-color: aliceblue;">
+            <p>{{statsData?.steps}}</p>
+        </nz-card>
+    </div>
+</div>
+
+<div nz-row style="margin-top: 20px;">
+    <div nz-col [nzXs]="{ span: 5, offset: 1 }" [nzLg]="{ span: 6, offset: 2 }">
+        <nz-card nzTitle="Загальний час" style="background-color: aliceblue;">
+            <p>{{statsData?.duration}} хв</p>
+        </nz-card>
+    </div>
+    <div nz-col [nzXs]="{ span: 5, offset: 1 }" [nzLg]="{ span: 6, offset: 2 }">
+        <nz-card nzTitle="Досягнуті цілі" style="background-color: aliceblue;">
+            <p>{{statsData?.achievedGoals}}</p>
+        </nz-card>
+    </div>
+    <div nz-col [nzXs]="{ span: 5, offset: 1 }" [nzLg]="{ span: 6, offset: 2 }">
+        <nz-card nzTitle="Невиконані цілі" style="background-color: aliceblue;">
+            <p>{{statsData?.notAchievedGoals}}</p>
+        </nz-card>
+    </div>
+</div>
+
+<div nz-row style="margin-top: 15px;">
+    <div nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="10">
+        <nz-card nzTitle="Останні тренування" style="background-color: aliceblue;">
+            <canvas #workoutLineChart></canvas>
+        </nz-card>
+    </div>
+    <div nz-col nzXs="20" nzSm="16" nzMd="12" nzLg="8" nzXl="4"></div>
+    <div nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="10">
+        <nz-card nzTitle="Останні активності" style="background-color: aliceblue;">
+            <canvas #activityLineChart></canvas>
+        </nz-card>
+    </div>
+</div>
+
+<div nz-row style="margin-top: 15px;">
+    <div nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="10">
+        <nz-card nzTitle="Тренування за місяць" style="background-color: aliceblue;">
+            <canvas #workoutMonthChart></canvas>
+        </nz-card>
+    </div>
+    <div nz-col nzXs="20" nzSm="16" nzMd="12" nzLg="8" nzXl="4"></div>
+    <div nz-col nzXs="2" nzSm="4" nzMd="6" nzLg="8" nzXl="10">
+        <nz-card nzTitle="Активності за місяць" style="background-color: aliceblue;">
+            <canvas #activityMonthChart></canvas>
+        </nz-card>
+    </div>
+</div>
+
+<div nz-row style="margin-top: 20px; justify-content: center;">
+  <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8" [nzLg]="6" style="text-align: center;">
+    <button nz-button nzType="primary" (click)="exportPdf()">
+      <i nz-icon nzType="file-pdf" nzTheme="outline"></i>
+      Експортувати PDF
+    </button>
+  </div>
+</div>

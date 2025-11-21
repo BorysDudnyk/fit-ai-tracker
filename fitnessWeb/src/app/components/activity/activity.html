@@ -1,0 +1,65 @@
+<div>
+    <div nz-row>
+        <h1 nz-card-grid [ngStyle]="gridStyle">Активність</h1>
+    </div>
+
+    <div nz-row>
+        <div nz-col nzFlex="2">
+            <nz-card nzType="inner" style="margin-top: 16px;" nzTitle="Додати нову активність">
+                <form nz-form [formGroup]="activityForm" class="custom-form" (ngSubmit)="submitForm()">
+                    <nz-form-item>
+                        <nz-form-control nzErrorTip="Будь ласка, введіть калорії!">
+                            <input type="text" nz-input formControlName="caloriesBurned" 
+                            placeholder="Введіть кількість спалених калорій" />
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-control nzErrorTip="Будь ласка, введіть дистанцію!">
+                            <input type="number" nz-input formControlName="distance" placeholder="Введіть дистанцію" />
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-control nzErrorTip="Будь ласка, введіть кількість кроків!">
+                            <input type="number" nz-input formControlName="steps" placeholder="Введіть кількість кроків" />
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-control nzErrorTip="Будь ласка, виберіть дату!">
+                            <nz-date-picker style="width: 100%;" formControlName="date"></nz-date-picker>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <button nz-button nzType="primary" nzBlock class="w-100" [disabled]="activityForm.invalid">
+                        Зберегти активність
+                    </button>
+                </form>
+            </nz-card>
+        </div>
+
+        <div nz-col nzFlex="3" style="margin-left: 20px;">
+            <nz-card nzType="inner" style="margin-top: 16px;" nzTitle="Минулі активності">
+
+                <div nz-card-grid style="width: 100%;" *ngFor="let activity of filteredActivities">
+                    <div nz-col nzSpan="30">
+                        Спалено калорій: <strong>{{activity.caloriesBurned}}</strong>
+                        -
+                        Дистанція: <strong>{{activity.distance}}</strong> KM
+                        -
+                        Кроків: <strong>{{activity.steps}}</strong>
+                        -
+                        Дата: <strong>{{activity.date | date}}</strong>
+                        -
+                    </div>
+                </div>
+
+                <button nz-button nzType="default" (click)="toggleShowAll()" style="margin-top: 10px;">
+                    {{ showAll ? 'Показати лише останній тиждень' : 'Показати всі активності' }}
+                </button>
+
+            </nz-card>
+        </div>
+    </div>
+</div>

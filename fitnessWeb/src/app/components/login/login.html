@@ -1,0 +1,47 @@
+<div class="login-container">
+  <nz-card style="max-width: 400px; margin: 50px auto;" nzTitle="Вхід у систему">
+    <form nz-form (ngSubmit)="login()" class="custom-form">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Будь ласка, введіть email!">
+          <input nz-input placeholder="Email"
+                 [(ngModel)]="user.email"
+                 name="email"
+                 required />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Будь ласка, введіть пароль!">
+          <input nz-input type="password"
+                 placeholder="Пароль"
+                 [(ngModel)]="user.password"
+                 name="password"
+                 required />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" nzBlock
+                  [disabled]="!user.email || !user.password">
+            Увійти
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+
+      <p *ngIf="message" style="color: red; text-align: center;">
+        {{ message }}
+      </p>
+
+      <p style="text-align:center; margin-top: 10px;">
+        <a href="#" (click)="toggleRegister(); $event.preventDefault()">
+          Не маєте акаунту? Зареєструватися
+        </a>
+      </p>
+    </form>
+  </nz-card>
+
+  <app-register *ngIf="showRegister"
+                (backToLogin)="toggleRegister()">
+  </app-register>
+</div>

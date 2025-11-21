@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Core Web Vitals Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="myChart" width="800" height="400"></canvas>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5', 'Test 6', 'Test 7', 'Test 8', 'Test 9', 'Test 10'],
+                datasets: [
+                    {
+                        label: 'LCP (s)',
+                        data: [0.13, 0.44, 0.42, 0.41, 0.11, 0.13, 0.12, 0.46, 0.46, 0.46],
+                        backgroundColor: '#36A2EB'
+                    },
+                    {
+                        label: 'CLS',
+                        data: [0.05, 0.04, 0.28, 0.01, 0.01, 0.0, 0.0, 0.0, 0.0, 0.0],
+                        backgroundColor: '#FF6384'
+                    },
+                    {
+                        label: 'INP (s)',
+                        data: [0.055, 0.070, 0.075, 0.070, 0.050, 0.055, 0.052, 0.075, 0.056, 0.080],
+                        backgroundColor: '#4BC0C0'
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Value (s)' }
+                    },
+                    x: {
+                        title: { display: true, text: 'Test Number' }
+                    }
+                },
+                plugins: {
+                    legend: { display: true },
+                    title: { display: true, text: 'Core Web Vitals Across 10 Page Reloads (INP Estimated)' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

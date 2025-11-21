@@ -1,0 +1,107 @@
+.ai-coach-container {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+  background: #f8f9fa;
+
+  nz-card {
+    width: 100%;
+    max-width: 1000px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background: #fff;
+  }
+
+  .coach-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 32px;
+    margin-top: 10px;
+  }
+
+  .form-column {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 8px 12px;
+    background: #fafafa;
+    border-radius: 12px;
+    border: 1px solid #eee;
+
+    label {
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #333;
+      font-size: 14px;
+    }
+
+    nz-select,
+    input[nz-input] {
+      height: 40px;
+      font-size: 14px;
+      border-radius: 8px;
+    }
+
+    ::ng-deep .ant-select-selector {
+      border-radius: 8px !important;
+    }
+  }
+
+  button[nz-button] {
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover:not([disabled]) {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .ai-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 24px;
+
+    button {
+      width: 260px;
+    }
+
+    .update-ai-btn {
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+  }
+
+  /* 📱 Мобільна адаптація */
+  @media (max-width: 768px) {
+    padding: 10px;
+
+    .form-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    nz-card {
+      padding: 10px;
+    }
+
+    .form-column {
+      padding: 10px;
+    }
+
+    button[nz-button] {
+      font-size: 15px;
+      height: 44px;
+    }
+  }
+}

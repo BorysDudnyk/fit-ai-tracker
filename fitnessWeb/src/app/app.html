@@ -1,0 +1,78 @@
+<nz-layout class="nz-layout">
+  <nz-sider>
+    <div class="logo">
+      <img src="/images/world.png" alt="Avatar" class="avatar"/>
+
+      <div class="user-info">
+        <strong>{{ auth.username() }}</strong>
+      </div>
+    </div>
+
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li 
+        nz-menu-item 
+        routerLink="/login" 
+        *ngIf="auth.username() === 'Гість'">
+        <span nz-icon nzType="login"></span>
+        <span>Авторизація</span>
+      </li>
+
+      <li 
+        nz-menu-item 
+        routerLink="/register" 
+        *ngIf="auth.username() === 'Гість'">
+        <span nz-icon nzType="user-add"></span>
+        <span>Реєстрація</span>
+      </li>
+
+      <ng-container *ngIf="auth.username() !== 'Гість'">
+
+        <li nz-menu-item routerLink="/dashboard">
+          <span nz-icon nzType="dashboard"></span>
+          <span>Панель керування</span>
+        </li>
+
+        <li nz-menu-item routerLink="/workout">
+          <span nz-icon nzType="split-cells"></span>
+          <span>Тренування</span>
+        </li>
+
+        <li nz-menu-item routerLink="/activity">
+          <span nz-icon nzType="control"></span>
+          <span>Активність</span>
+        </li>
+
+        <li nz-menu-item routerLink="/goal">
+          <span nz-icon nzType="fund"></span>
+          <span>Ціль</span>
+        </li>
+
+        <li nz-menu-item routerLink="/achievements" routerLinkActive="ant-menu-item-selected">
+          <span nz-icon nzType="trophy"></span>
+          <span>Досягнення</span>
+        </li>
+
+        
+        <li nz-menu-item routerLink="/ai-coach">
+          <span nz-icon nzType="robot"></span>
+          <span>AI Порадник</span>
+        </li>
+        
+        <li 
+          nz-menu-item 
+          (click)="auth.logout()">
+          <span nz-icon nzType="logout"></span>
+          <span>Вийти</span>
+        </li>
+      </ng-container>
+    </ul>
+  </nz-sider>
+
+  <nz-layout class="right-layout">
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

@@ -1,0 +1,149 @@
+<div class="ai-coach-container">
+  <nz-card nzTitle="AI Порадник 2.0" style="max-width: 1000px; margin: 20px auto; border-radius: 12px;">
+    <form (ngSubmit)="getAdvice()" #form="ngForm" class="coach-form">
+      <!-- Гнучка сітка: 2 колонки -->
+      <div class="form-grid">
+        <!-- Колонка 1 -->
+        <div class="form-column">
+          <label>Вік:</label>
+          <input nz-input type="number" placeholder="Наприклад: 28" [(ngModel)]="formData.age" name="age" required />
+
+          <label>Вага (кг):</label>
+          <input nz-input type="number" placeholder="Наприклад: 70" [(ngModel)]="formData.weight" name="weight" required />
+
+          <label>Зріст (см):</label>
+          <input nz-input type="number" placeholder="Наприклад: 175" [(ngModel)]="formData.height" name="height" required />
+
+          <label>Стать:</label>
+          <nz-select nzPlaceHolder="Оберіть стать" [(ngModel)]="formData.gender" name="gender">
+            <nz-option nzValue="male" nzLabel="Чоловік"></nz-option>
+            <nz-option nzValue="female" nzLabel="Жінка"></nz-option>
+          </nz-select>
+
+          <label>Рівень активності:</label>
+          <nz-select nzPlaceHolder="Оберіть рівень" [(ngModel)]="formData.activityLevel" name="activityLevel">
+            <nz-option nzValue="sedentary" nzLabel="Сидячий"></nz-option>
+            <nz-option nzValue="light" nzLabel="Легкий"></nz-option>
+            <nz-option nzValue="moderate" nzLabel="Помірний"></nz-option>
+            <nz-option nzValue="active" nzLabel="Активний"></nz-option>
+            <nz-option nzValue="veryActive" nzLabel="Дуже активний"></nz-option>
+          </nz-select>
+
+          <label>Мета:</label>
+          <nz-select nzPlaceHolder="Оберіть мету" [(ngModel)]="formData.goal" name="goal">
+            <nz-option nzValue="lose" nzLabel="Схуднути"></nz-option>
+            <nz-option nzValue="maintain" nzLabel="Підтримати вагу"></nz-option>
+            <nz-option nzValue="gain" nzLabel="Набрати м’язи"></nz-option>
+          </nz-select>
+
+          <label>Сон (годин):</label>
+          <nz-select nzPlaceHolder="Кількість годин" [(ngModel)]="formData.sleepHours" name="sleepHours">
+            <nz-option *ngFor="let h of sleepHoursList" [nzValue]="h" [nzLabel]="h + ' год'"></nz-option>
+          </nz-select>
+
+          <label>Стрес (1–10):</label>
+          <nz-select nzPlaceHolder="Рівень стресу" [(ngModel)]="formData.stressLevel" name="stressLevel">
+            <nz-option *ngFor="let s of stressLevels" [nzValue]="s" [nzLabel]="s"></nz-option>
+          </nz-select>
+
+          <label>Час тренувань:</label>
+          <nz-select nzPlaceHolder="Коли тренуєтесь?" [(ngModel)]="formData.workoutTime" name="workoutTime">
+            <nz-option nzValue="morning" nzLabel="Ранок"></nz-option>
+            <nz-option nzValue="day" nzLabel="День"></nz-option>
+            <nz-option nzValue="evening" nzLabel="Вечір"></nz-option>
+          </nz-select>
+        </div>
+
+        <!-- Колонка 2 -->
+        <div class="form-column">
+          <label>Вегетаріанець:</label>
+          <nz-select nzPlaceHolder="Так / Ні" [(ngModel)]="formData.vegetarian" name="vegetarian">
+            <nz-option [nzValue]="true" nzLabel="Так"></nz-option>
+            <nz-option [nzValue]="false" nzLabel="Ні"></nz-option>
+          </nz-select>
+
+          <label>Енергія (1–10):</label>
+          <nz-select nzPlaceHolder="Рівень енергії" [(ngModel)]="formData.energyLevel" name="energyLevel">
+            <nz-option *ngFor="let e of energyLevels" [nzValue]="e" [nzLabel]="e"></nz-option>
+          </nz-select>
+
+          <label>Травми:</label>
+          <nz-select nzMode="tags" nzPlaceHolder="Введіть травми" [(ngModel)]="formData.injuries" name="injuries"></nz-select>
+
+          <label>Цільовий % жиру:</label>
+          <input nz-input type="number" placeholder="Наприклад: 15" [(ngModel)]="formData.bodyFatGoal" name="bodyFatGoal" />
+
+          <label>Поточний % жиру:</label>
+          <input nz-input type="number" placeholder="Наприклад: 22" [(ngModel)]="formData.currentBodyFat" name="currentBodyFat" />
+
+          <label>Гнучкість (0–100):</label>
+          <input nz-input type="number" placeholder="Наприклад: 70" [(ngModel)]="formData.flexibilityScore" name="flexibilityScore" />
+
+          <label>Відновлення (год):</label>
+          <input nz-input type="number" placeholder="Наприклад: 8" [(ngModel)]="formData.recoveryTime" name="recoveryTime" />
+
+          <label>Смаки:</label>
+          <nz-select nzMode="multiple" nzPlaceHolder="Оберіть смаки" [(ngModel)]="formData.tastePreferences" name="tastePreferences">
+            <nz-option nzValue="sweet" nzLabel="Солодке"></nz-option>
+            <nz-option nzValue="salty" nzLabel="Солоне"></nz-option>
+            <nz-option nzValue="spicy" nzLabel="Гостре"></nz-option>
+            <nz-option nzValue="umami" nzLabel="Умамі"></nz-option>
+            <nz-option nzValue="bitter" nzLabel="Гіркувате"></nz-option>
+          </nz-select>
+
+          <label>Алергії:</label>
+          <nz-select nzMode="multiple" nzPlaceHolder="Алергії" [(ngModel)]="formData.allergies" name="allergies">
+            <nz-option nzValue="nuts" nzLabel="Горіхи"></nz-option>
+            <nz-option nzValue="fish" nzLabel="Риба"></nz-option>
+            <nz-option nzValue="egg" nzLabel="Яйця"></nz-option>
+            <nz-option nzValue="dairy" nzLabel="Молочка"></nz-option>
+            <nz-option nzValue="gluten" nzLabel="Глютен"></nz-option>
+          </nz-select>
+
+          <label>Улюблені вправи:</label>
+          <nz-select nzMode="multiple" nzPlaceHolder="Оберіть вправи" [(ngModel)]="formData.preferredWorkouts" name="preferredWorkouts">
+            <nz-option *ngFor="let w of listOfType" [nzValue]="w" [nzLabel]="w"></nz-option>
+          </nz-select>
+        </div>
+      </div>
+
+      <!-- Кнопка "Отримати пораду" -->
+      <button
+        nz-button nzType="primary" nzBlock
+        type="submit"
+        [nzLoading]="isLoading"
+        style="margin-top: 30px; height: 48px; font-size: 16px; font-weight: 600;">
+        {{ isLoading ? 'Обчислюємо...' : 'Отримати персональну пораду' }}
+      </button>
+
+      <!-- Кнопки управління -->
+      <div style="margin-top: 20px; text-align: center; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <button
+          nz-button nzType="default" nzSize="small" type="button"
+          (click)="confirmRetrain()"
+          [nzLoading]="retraining"
+          nz-popconfirm
+          nzPopconfirmTitle="Перетренувати AI модель? (~10 сек)"
+          (nzOnConfirm)="retrainModel()">
+          Оновити AI модель
+        </button>
+
+        <button nz-button nzType="default" nzSize="small" type="button" (click)="modalService.showHistory()">
+          Показати історію
+        </button>
+
+        <button nz-button nzType="dashed" nzSize="small" type="button" (click)="modalService.clearData()">
+          Очистити історію
+        </button>
+
+        <input type="file" #fileInput (change)="onFileChange($event)" style="display: none" accept=".json">
+        <button nz-button nzType="dashed" nzSize="small" type="button" (click)="modalService.importData(fileInput)">
+          Імпорт історії
+        </button>
+      </div>
+
+    </form>
+  </nz-card>
+</div>
+
+<app-advice-feedback #feedback hidden></app-advice-feedback>

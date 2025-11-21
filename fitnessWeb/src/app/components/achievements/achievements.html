@@ -1,0 +1,29 @@
+<div class="achievements">
+  <h2>Досягнення</h2>
+
+  <div *ngIf="achievements.length === 0" class="no-data">
+    Немає даних для відображення.
+  </div>
+
+  <div class="cards" *ngIf="achievements.length > 0">
+    <div class="card" *ngFor="let ach of achievements">
+      <h3>{{ ach.title }}</h3>
+
+      <p *ngIf="!ach.isGoalStat">
+        {{ ach.value }} / {{ ach.goal }}
+      </p>
+
+      <p *ngIf="ach.isGoalStat">
+        {{ ach.value }} / {{ ach.goal }}
+      </p>
+
+      <div class="progress" *ngIf="!ach.isGoalStat || (ach.goal && ach.goal > 0)">
+        <div class="progress-bar" [style.width.%]="ach.progress"></div>
+      </div>
+
+      <p class="progress-text">
+        {{ ach.progress }}%
+      </p>
+    </div>
+  </div>
+</div>

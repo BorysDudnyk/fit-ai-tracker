@@ -1,0 +1,104 @@
+<div class="register-container">
+  <nz-card class="register-card" nzTitle="Реєстрація">
+    <form nz-form (ngSubmit)="register()" class="custom-form">
+
+      <!-- Ім'я -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Введіть ім'я!" [nzValidateStatus]="user.firstName ? 'success' : 'error'">
+          <input nz-input placeholder="Ім'я" [(ngModel)]="user.firstName" name="firstName" required />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Прізвище -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Введіть прізвище!" [nzValidateStatus]="user.lastName ? 'success' : 'error'">
+          <input nz-input placeholder="Прізвище" [(ngModel)]="user.lastName" name="lastName" required />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Нікнейм -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Введіть нікнейм!" [nzValidateStatus]="user.nickname ? 'success' : 'error'">
+          <input nz-input placeholder="Нікнейм" [(ngModel)]="user.nickname" name="nickname" required />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Email -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Введіть коректний email!" [nzValidateStatus]="user.email ? 'success' : 'error'">
+          <input nz-input type="email" placeholder="Електронна пошта" [(ngModel)]="user.email" name="email" required />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Пароль -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Введіть пароль!" [nzValidateStatus]="user.password ? 'success' : 'error'">
+          <input nz-input type="password" placeholder="Пароль" [(ngModel)]="user.password" name="password" required />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Повтор паролю -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Паролі не співпадають!" [nzValidateStatus]="passwordsMatch() ? 'success' : 'error'">
+          <input nz-input type="password" placeholder="Повторіть пароль" [(ngModel)]="user.confirmPassword" name="confirmPassword" required />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Телефон -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Введіть телефон!" [nzValidateStatus]="user.phone ? 'success' : 'error'">
+          <input nz-input type="tel" placeholder="Номер телефону" [(ngModel)]="user.phone" name="phone" required />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Дата народження -->
+      <nz-form-item>
+        <nz-form-control>
+          <input nz-input type="date" placeholder="Дата народження" [(ngModel)]="user.birthDate" name="birthDate" required />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Стать -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Будь ласка, оберіть стать!">
+          <nz-select
+            [(ngModel)]="user.gender"
+            name="gender"
+            nzPlaceHolder="Оберіть стать"
+            nzAllowClear
+            required
+          >
+            <nz-option nzValue="male" nzLabel="Чоловіча"></nz-option>
+            <nz-option nzValue="female" nzLabel="Жіноча"></nz-option>
+            <nz-option nzValue="other" nzLabel="Інше"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Країна/місто -->
+      <nz-form-item>
+        <nz-form-control>
+          <input nz-input placeholder="Країна" [(ngModel)]="user.country" name="country" required />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control>
+          <input nz-input placeholder="Місто" [(ngModel)]="user.city" name="city" required />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Кнопка -->
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" nzBlock [disabled]="!isFormValid()">
+            Зареєструватися
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Повідомлення -->
+      <p *ngIf="message" class="register-message">{{ message }}</p>
+    </form>
+  </nz-card>
+</div>
