@@ -76,7 +76,7 @@ This project is built around 3 main pillars:
 ## Features
 
 ### Authentication & Users
-- User registration (no encryption for learning/demo version)
+- User registration
 - Login system
 - Role-based structure (USER / ADMIN)
 - Session state (Angular local state)
